@@ -1,13 +1,13 @@
 
-module.exports = async (req, res) => {
-  const targetUrl = req.query.url;
+export default async function handler(req, res) {
+  const { url } = req.query;
 
-  if (!targetUrl) {
+  if (!url) {
     return res.status(400).json({ error: 'Missing url parameter' });
   }
 
   try {
-    const response = await fetch(targetUrl);
+    const response = await fetch(url);
     if (!response.ok) {
       return res.status(response.status).json({ error: 'Image fetch failed' });
     }
@@ -21,8 +21,4 @@ module.exports = async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: 'Proxy error: ' + error.message });
   }
-};
-
-module.exports.config = {
-  runtime: 'nodejs18.x'
-};
+}
