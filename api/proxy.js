@@ -1,7 +1,7 @@
 
-import fetch from 'node-fetch';
+const fetch = require('node-fetch');
 
-export default async function handler(req, res) {
+module.exports = async (req, res) => {
   const targetUrl = req.query.url;
 
   if (!targetUrl) {
@@ -23,4 +23,4 @@ export default async function handler(req, res) {
   } catch (error) {
     res.status(500).json({ error: 'Proxy error: ' + error.message });
   }
-}
+};
