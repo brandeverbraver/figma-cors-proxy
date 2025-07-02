@@ -1,6 +1,4 @@
 
-const fetch = require('node-fetch');
-
 module.exports = async (req, res) => {
   const targetUrl = req.query.url;
 
@@ -23,4 +21,8 @@ module.exports = async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: 'Proxy error: ' + error.message });
   }
+};
+
+module.exports.config = {
+  runtime: 'nodejs18.x'
 };
